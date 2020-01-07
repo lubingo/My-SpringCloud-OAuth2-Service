@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ import java.util.Map;
 public class TestController {
 
     @RequestMapping(value = "/user" ,method = {RequestMethod.POST,RequestMethod.GET} ,produces = "application/json")
-    public Map<String,Object> user(OAuth2Authentication user){
+    public Map<String,Object> user(HttpServletRequest request , OAuth2Authentication user){
         Map<String,Object> userInfo = new HashMap() ;
         userInfo.put("user" , user.getUserAuthentication());
         userInfo.put("authorities" , AuthorityUtils.authorityListToSet(user.getUserAuthentication().getAuthorities()));

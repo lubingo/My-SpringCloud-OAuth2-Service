@@ -45,7 +45,7 @@ public class OauthUserService<T extends OauthUser>  implements UserDetailsServic
             return  new User(user.getUserName(),user.getPassword(),authorities);
         } catch (UsernameNotFoundException e) {
             e.printStackTrace();
-            logger.error("get user error :{}",e);
+            logger.error("get user error ",e);
             return null ;
         }
 

@@ -67,7 +67,8 @@ public class OauthClientService implements ClientDetailsService {
             oauthClientDetails.setRegisteredRedirectUri(set_RegisteredRedirectUris);
             return oauthClientDetails;
         } catch (ClientRegistrationException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            logger.error("get client error",e);
             return null;
         }
     }

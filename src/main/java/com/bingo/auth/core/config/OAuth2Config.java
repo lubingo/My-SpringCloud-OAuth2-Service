@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
 /**
  * @author lubing
@@ -26,6 +27,12 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     private OauthClientService oauthClientService ;
 
     @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security.allowFormAuthenticationForClients();
+        security.checkTokenAccess("permitAll()");
+    }
+
+    @Override
     public void configure(ClientDetailsServiceConfigurer clients)throws Exception {
         clients.withClientDetails(oauthClientService);
     }
@@ -33,4 +40,5 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager).userDetailsService(oauthUserService);
     }
+
 }
