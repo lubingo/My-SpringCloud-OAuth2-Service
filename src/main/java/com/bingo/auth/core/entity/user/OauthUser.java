@@ -1,4 +1,4 @@
-package com.bingo.auth.core.entity.oauth;
+package com.bingo.auth.core.entity.user;
 
 public class OauthUser {
     /**

@@ -18,20 +18,20 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!--生成Model类存放位置--><!--targetProject 填入项目存在计算机的位置 -->
-        <javaModelGenerator targetPackage="com.bingo.auth.core.entity.oauth" targetProject="E:\workspace_my\SpringCloud-Study\My-SpringCloud-OAuth2-Service\src\main\java">
+        <javaModelGenerator targetPackage="com.bingo.auth.core.entity.client" targetProject="E:\workspace_my\SpringCloud-Study\My-SpringCloud-OAuth2-Service\src\main\java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!--生成映射文件存放位置-->
-        <sqlMapGenerator targetPackage="user" targetProject="E:\workspace_my\SpringCloud-Study\My-SpringCloud-OAuth2-Service\src\main\resources\mapper\oauth">
+        <sqlMapGenerator targetPackage="client" targetProject="E:\workspace_my\SpringCloud-Study\My-SpringCloud-OAuth2-Service\src\main\resources\mapper\oauth">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!--生成Dao类存放位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.bingo.auth.core.dao.oauth" targetProject="E:\workspace_my\SpringCloud-Study\My-SpringCloud-OAuth2-Service\src\main\java"  >
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.bingo.auth.core.dao.client" targetProject="E:\workspace_my\SpringCloud-Study\My-SpringCloud-OAuth2-Service\src\main\java"  >
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!--生成对应表及类名-->
-        <table tableName="oauth_user" domainObjectName="OauthUser" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="oauth_client" domainObjectName="OauthClient" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>
 </generatorConfiguration>
 

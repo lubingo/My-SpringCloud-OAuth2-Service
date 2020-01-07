@@ -1,6 +1,6 @@
-package com.bingo.auth.core.dao.oauth;
+package com.bingo.auth.core.dao.user;
 
-import com.bingo.auth.core.entity.oauth.OauthUser;
+import com.bingo.auth.core.entity.user.OauthUser;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

@@ -2,6 +2,7 @@ package com.bingo.auth.core.controller;
 
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +18,6 @@ import java.util.Map;
  * @since
  */
 @RestController
-@RequestMapping(value = "/test")
 public class TestController {
 
     @RequestMapping(value = "/user" ,method = {RequestMethod.POST,RequestMethod.GET} ,produces = "application/json")
