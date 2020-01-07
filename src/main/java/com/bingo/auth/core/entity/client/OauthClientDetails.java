@@ -15,8 +15,6 @@ import java.util.Set;
  */
 public class OauthClientDetails implements ClientDetails {
 
-
-
     private String clientId;
 
     private String clientSecret;
@@ -29,15 +27,13 @@ public class OauthClientDetails implements ClientDetails {
 
     private Set<String> registeredRedirectUri;
 
-    private String autoApproveScopes;
-
     private  Collection<GrantedAuthority>  authorities;
 
-    private Integer accessTokenValiditySeconds; //set get
+    private Integer accessTokenValiditySeconds;
 
-    private Integer refreshTokenValiditySeconds; //set get
+    private Integer refreshTokenValiditySeconds;
 
-    private Map<String, Object> additionalInformation;//set get
+    private Map<String, Object> additionalInformation;
 
 
     public void setClientId(String clientId) {

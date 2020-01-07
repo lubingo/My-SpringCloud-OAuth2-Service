@@ -28,7 +28,6 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(ClientDetailsServiceConfigurer clients)throws Exception {
         clients.withClientDetails(oauthClientService);
-       // clients.inMemory().withClient("ServiceB").secret("password").authorizedGrantTypes("refresh_token","password","client_credentials").scopes("webclient","mobileclient");
     }
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
