@@ -1,8 +1,7 @@
 package com.bingo.auth.core.service;
 
-import com.bingo.auth.core.dao.OauthUserDao;
 import com.bingo.auth.core.dao.oauth.OauthUserMapper;
-import com.bingo.auth.core.entity.OauthUser;
+import com.bingo.auth.core.entity.oauth.OauthUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
