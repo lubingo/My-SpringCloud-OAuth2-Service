@@ -53,8 +53,9 @@ public class OauthClientService implements ClientDetailsService {
 
             String[] strRole = oauthClient.getAuthorities().trim().split(",") ;
             List l_Authorities = new ArrayList<GrantedAuthority>() ;
-            for (int i = 0; i <strRole.length-1 ; i++) {
-                l_Authorities.add( new SimpleGrantedAuthority(strRole[i])) ;
+            for (int i = 0; i <strRole.length ; i++) {
+                if(!"".equals(strRole[i]))
+                    l_Authorities.add( new SimpleGrantedAuthority(strRole[i])) ;
             }
             oauthClientDetails.setAuthorities(l_Authorities);
 

@@ -1,16 +1,20 @@
 package com.bingo.auth.core.config;
 
 import com.bingo.auth.core.service.user.OauthUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
@@ -24,7 +28,7 @@ import javax.annotation.Resource;
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 
-    @Resource
+    @Autowired
     private OauthUserService oauthUserService ;
 
     @Override
@@ -33,30 +37,25 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        //TODO 查库 查询用户
         auth.userDetailsService(oauthUserService) ;
         //auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder()).withUser("tangTang").password(new BCryptPasswordEncoder().encode("123456")).roles("ADMIN","USER");
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
-                .antMatchers("/static/**","/css/**", "/js/**", "/fonts/**", "/images/**").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/welcome").hasRole("USER")
-                .antMatchers("/oauth").hasRole("USER")
-                .and().formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/welcome")
-                .and().logout().permitAll()
-        ;
+      super.configure(http);
     }
 
     @Override
     public void configure(WebSecurity web)   {
-        //忽略
-        web.ignoring().antMatchers("/admin/**");
+
+        //TODO  个人理解 是忽略权限控制的资源和方法
+        //通过查询数据库， 拉取需要被排除的数据
+
+        web.ignoring().antMatchers("/admin/**","/html/**");
     }
 
     @Bean

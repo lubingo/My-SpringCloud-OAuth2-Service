@@ -42,13 +42,11 @@ public class OauthUserService<T extends OauthUser>  implements UserDetailsServic
                     authorities.add(new SimpleGrantedAuthority(role.trim()));
                 }
             }
-            return  new User(user.getUserName(),user.getPassword(),authorities);
+            return  new User(user.getUserName(),user.getPassword(),user.getActiveStatus()==0?false:true,true,true,true,authorities);
         } catch (UsernameNotFoundException e) {
             e.printStackTrace();
             logger.error("get user error ",e);
             return null ;
         }
-
-
     }
 }

@@ -1,5 +1,7 @@
 package com.bingo.auth.core.controller;
 
+import com.bingo.auth.core.entity.response.ResponseJsonResult;
+import com.bingo.auth.core.entity.response.ResponseResultUtil;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -22,12 +24,41 @@ import java.util.Map;
 public class TestController {
 
     @RequestMapping(value = "/user" ,method = {RequestMethod.POST,RequestMethod.GET} ,produces = "application/json")
-    public Map<String,Object> user(HttpServletRequest request , OAuth2Authentication user){
+    public ResponseJsonResult  user(HttpServletRequest request , OAuth2Authentication user){
         Map<String,Object> userInfo = new HashMap() ;
         userInfo.put("user" , user.getUserAuthentication());
         userInfo.put("authorities" , AuthorityUtils.authorityListToSet(user.getUserAuthentication().getAuthorities()));
-        return  userInfo ;
+        return ResponseResultUtil.success(userInfo)  ;
     }
+
+    @RequestMapping(value = "/v1" ,method = {RequestMethod.POST,RequestMethod.GET} ,produces = "application/json")
+    public String v1(){
+
+        return "method v1 is arrive" ;
+    }
+
+    @RequestMapping(value = "/v12" ,method = {RequestMethod.POST,RequestMethod.GET} ,produces = "application/json")
+    public String v12(){
+
+        return "method v12 is arrive" ;
+    }
+
+    @RequestMapping(value = "/admin" ,method = {RequestMethod.POST,RequestMethod.GET} ,produces = "application/json")
+    public String admin(){
+
+        return "method admin is arrive" ;
+    }
+    @RequestMapping(value = "/login" ,method = {RequestMethod.POST,RequestMethod.GET} ,produces = "application/json")
+    public String login(){
+
+        return "method login is arrive" ;
+    }
+    @RequestMapping(value = "/welcome" ,method = {RequestMethod.POST,RequestMethod.GET} ,produces = "application/json")
+    public String welcome(){
+
+        return "method login is arrive" ;
+    }
+
     public static void main(String[] args) {
 
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
