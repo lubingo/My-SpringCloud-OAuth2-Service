@@ -39,7 +39,7 @@ public class OauthUserService<T extends OauthUser>  implements UserDetailsServic
             if(!StringUtils.isEmpty(user.getRoles())){
                 String[] roles = user.getRoles().split(",") ;
                 for (String role : roles){
-                    authorities.add(new SimpleGrantedAuthority(role.trim()));
+                    authorities.add(new SimpleGrantedAuthority("ROLE_"+role.trim()));
                 }
             }
             return  new User(user.getUserName(),user.getPassword(),user.getActiveStatus()==0?false:true,true,true,true,authorities);

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,7 +51,7 @@ public class TestController {
         return "method admin is arrive" ;
     }
     @RequestMapping(value = "/login" ,method = {RequestMethod.POST,RequestMethod.GET} ,produces = "application/json")
-    public String login(){
+    public String login(HttpServletRequest request , HttpServletResponse response ,String username , String password){
 
         return "method login is arrive" ;
     }
@@ -60,7 +62,6 @@ public class TestController {
     }
 
     public static void main(String[] args) {
-
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String encode = bCryptPasswordEncoder.encode("123456");
         System.out.println(encode);

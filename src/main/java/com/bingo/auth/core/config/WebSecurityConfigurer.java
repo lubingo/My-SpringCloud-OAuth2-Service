@@ -4,19 +4,12 @@ import com.bingo.auth.core.service.user.OauthUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 
 /**
  * @author lubing
@@ -46,16 +39,14 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-      super.configure(http);
+
     }
 
     @Override
     public void configure(WebSecurity web)   {
+        //TODO  个人理解 是忽略权限控制的资源和方法  ， 个人觉得此处 处理静态资源忽略比较合适
+        web.ignoring().antMatchers("/login.html" ,"/html/*.html");
 
-        //TODO  个人理解 是忽略权限控制的资源和方法
-        //通过查询数据库， 拉取需要被排除的数据
-
-        web.ignoring().antMatchers("/admin/**","/html/**");
     }
 
     @Bean
