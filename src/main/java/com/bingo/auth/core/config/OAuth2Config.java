@@ -38,7 +38,9 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     }
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.authenticationManager(authenticationManager).userDetailsService(oauthUserService);
+        endpoints
+                .userDetailsService(oauthUserService)// 配置自定义的用户权限数据，不配置会导致token无法刷新
+                .authenticationManager(authenticationManager);
     }
 
 }

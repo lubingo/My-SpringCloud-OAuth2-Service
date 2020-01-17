@@ -26,7 +26,7 @@ public class OauthAccessDecisionManager implements AccessDecisionManager {
         while (iterator.hasNext()){
             ConfigAttribute configAttribute = iterator.next() ;
             // permissions required for the current request
-            String needRole = configAttribute.getAttribute() ;
+            String needRole = new StringBuilder("ROLE_").append(configAttribute.getAttribute()).toString() ;
             // the permissions of the current user
             Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
             for (GrantedAuthority ga : authorities){
@@ -39,11 +39,11 @@ public class OauthAccessDecisionManager implements AccessDecisionManager {
 
     @Override
     public boolean supports(ConfigAttribute attribute) {
-        return false;
+        return true;
     }
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return false;
+        return true;
     }
 }

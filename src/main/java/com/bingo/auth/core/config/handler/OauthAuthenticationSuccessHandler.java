@@ -1,5 +1,9 @@
 package com.bingo.auth.core.config.handler;
 
+import com.alibaba.fastjson.JSON;
+import com.bingo.auth.core.entity.response.ResponseJsonResult;
+import com.bingo.auth.core.entity.response.ResponseResultUtil;
+import com.bingo.auth.core.eum.ResultCode;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -20,10 +24,10 @@ public class OauthAuthenticationSuccessHandler implements AuthenticationSuccessH
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-
-        Object object =authentication.getPrincipal() ;
-
-
-
+        ResponseJsonResult result = ResponseResultUtil.fail(ResultCode.SUCCESS.getCode());
+        response.setContentType("text/json;charset=utf-8");
+        response.getWriter().write(JSON.toJSONString(result));
+        response.getWriter().flush();
+        response.getWriter().close();
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.stereotype.Component;
+import org.springframework.util.AntPathMatcher;
 
 import java.util.Collection;
 import java.util.List;
@@ -21,16 +22,22 @@ import java.util.List;
 @Component
 public class OauthFilterInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
 
+    private AntPathMatcher antPathMatcher = new AntPathMatcher(); // 模糊匹配 如何 auth/**   auth/auth
+
     @Autowired
     private OauthResourceMapper oauthResourceMapper ;
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
-        String requestUrl = ((FilterInvocation )object).getRequestUrl() ;
+        String requestUrl = ((FilterInvocation )object).getRequestUrl()  ;
+        if(requestUrl.contains("?"))
+            requestUrl=requestUrl.substring(0,requestUrl.indexOf("?")) ;
         List<OauthResource> list = oauthResourceMapper.selectByResourceUrl(requestUrl) ;
-        if(list==null || list.size() <1) return null ;
+
+
         String[] attributes = new String[list.size()];
         for (int i = 0; i <list.size() ; i++) {
-            attributes[i] = list.get(i).getRoleName() ;
+            if(antPathMatcher.match(list.get(i).getResourceUrl(),requestUrl))
+                attributes[i] = list.get(i).getRoleName() ;
         }
         return SecurityConfig.createList(attributes);
     }
@@ -42,6 +49,6 @@ public class OauthFilterInvocationSecurityMetadataSource implements FilterInvoca
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return false;
+        return true;
     }
 }

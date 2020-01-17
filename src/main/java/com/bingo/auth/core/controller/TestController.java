@@ -30,6 +30,7 @@ public class TestController {
         Map<String,Object> userInfo = new HashMap() ;
         userInfo.put("user" , user.getUserAuthentication());
         userInfo.put("authorities" , AuthorityUtils.authorityListToSet(user.getUserAuthentication().getAuthorities()));
+        request.setAttribute("user",userInfo);
         return ResponseResultUtil.success(userInfo)  ;
     }
 

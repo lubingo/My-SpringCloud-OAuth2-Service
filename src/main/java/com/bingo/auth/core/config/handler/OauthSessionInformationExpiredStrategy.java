@@ -6,6 +6,7 @@ import com.bingo.auth.core.entity.response.ResponseResultUtil;
 import com.bingo.auth.core.eum.ResultCode;
 import org.springframework.security.web.session.SessionInformationExpiredEvent;
 import org.springframework.security.web.session.SessionInformationExpiredStrategy;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import java.io.IOException;
  * @Date 2020/1/13 16:36
  * @since
  */
+@Component
 public class OauthSessionInformationExpiredStrategy implements SessionInformationExpiredStrategy {
     @Override
     public void onExpiredSessionDetected(SessionInformationExpiredEvent event) throws IOException, ServletException {

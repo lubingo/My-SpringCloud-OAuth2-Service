@@ -56,4 +56,6 @@ public interface OauthResourceMapper {
     int updateByPrimaryKey(OauthResource record);
 
     List<OauthResource> selectByResourceUrl(String resourceUrl);
+
+    List<OauthResource> selectByResourceRoleName(String roleName);
 }

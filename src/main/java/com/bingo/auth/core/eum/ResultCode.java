@@ -11,7 +11,7 @@ import lombok.Data;
 
 public enum ResultCode {
 
-    SUCCESS(0000,"成功"),
+    SUCCESS(0,"成功"),
     COMMON_FAIL(9999, "失败"),
 
     PARAM_NOT_VALID(1001, "参数无效"),

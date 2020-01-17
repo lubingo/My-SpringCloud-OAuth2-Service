@@ -103,6 +103,10 @@
 
   <select id="selectByResourceUrl" parameterType="java.lang.String" resultMap="BaseResultMap">
     select   <include refid="Base_Column_List" />  from  oauth_resource where  resource_url =  #{resourceUrl}
-
   </select>
+  <select id="selectByResourceRoleName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select   <include refid="Base_Column_List" />  from  oauth_resource where  role_name =  #{roleName}
+  </select>
+
+
 </mapper>

@@ -48,6 +48,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     @Autowired
     private OauthFilterInvocationSecurityMetadataSource oauthFilterInvocationSecurityMetadataSource ;
 
+    @Autowired
+    private OauthAbstractSecurityInterceptor oauthAbstractSecurityInterceptor ;
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
@@ -59,14 +61,15 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         //TODO http 相关配置，包括登入 登出、异常处理、回话处理等 逻辑
         http.csrf().disable().authorizeRequests().anyRequest().authenticated()
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
-
                     @Override
                     public <O extends FilterSecurityInterceptor> O postProcess(O object) {
-                        object.setAccessDecisionManager(oauthAccessDecisionManager);
                         object.setSecurityMetadataSource(oauthFilterInvocationSecurityMetadataSource);
+                        object.setAccessDecisionManager(oauthAccessDecisionManager);
                         return object;
                     }
                 })
+
+                // object.setAccessDecisionManager(oauthAccessDecisionManager);
                 //登入
                 .and().formLogin()
                     //允许所有用户
@@ -93,7 +96,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                     .maximumSessions(1)
                     //会话失效(账号被挤下线)处理逻辑
                     .expiredSessionStrategy(oauthSessionInformationExpiredStrategy);
-
+        http.addFilterBefore(oauthAbstractSecurityInterceptor,FilterSecurityInterceptor.class);
     }
 
 }
