@@ -14,7 +14,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-tomcat:2.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: jakarta.annotation:jakarta.annotation-api:1.3.5" level="project" />
@@ -81,6 +81,8 @@
     <orderEntry type="library" name="Maven: org.mybatis.spring.boot:mybatis-spring-boot-autoconfigure:2.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.5.1" level="project" />
     <orderEntry type="library" name="Maven: org.mybatis:mybatis-spring:2.0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.57" level="project" />
+    <orderEntry type="library" name="Maven: net.sf.trove4j:core:3.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-starter-test:2.2.2.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test:2.2.2.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test-autoconfigure:2.2.2.RELEASE" level="project" />
