@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.text.html.Option;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,10 +35,28 @@ public class TestController {
         return ResponseResultUtil.success(userInfo)  ;
     }
 
-    @RequestMapping(value = "/v1" ,method = {RequestMethod.POST,RequestMethod.GET} ,produces = "application/json")
-    public String v1(){
+    @RequestMapping(value = "/v1" ,method = {RequestMethod.POST,RequestMethod.GET  } ,produces = "application/json")
+    public ResponseJsonResult v1(String  str){
 
-        return "method v1 is arrive" ;
+//        title: {
+//            text: '天津银行理财经理销售量'
+//        },
+//        tooltip: {},
+//        legend: {
+//            data: ["理财经理销量"]
+//        },
+//        xAxis: {
+//            data: ["张三","李四","王五","李柳","田七","周八"]
+//        },
+//        yAxis: {},
+//        series: [{
+//            name: '销量',
+//                    type: 'bar',
+//                    data: [5, 20, 366, 100, 10, 20]
+//        }]
+
+
+        return ResponseResultUtil.success(str)  ;
     }
 
     @RequestMapping(value = "/v12" ,method = {RequestMethod.POST,RequestMethod.GET} ,produces = "application/json")
